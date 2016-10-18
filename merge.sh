@@ -5,7 +5,8 @@ createbranch(){
     local git_checkout_master="git checkout origin/master"
     local git_branch_cmd="git checkout -b $1"
     local git_push="git push --set-upstream origin $1"
-    eval $git_branch_cmd
+
+    $($git_checkout_master,$git_branch_cmd,$git_push)
 }
 
 
