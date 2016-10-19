@@ -5,13 +5,28 @@ createbranch(){
     local git_branch_cmd="git checkout -b $1"
     local git_push="git push --set-upstream origin $1"
 
-    $($git_branch_cmd,$git_push)
+    $git_branch_cmd;$git_push
 }
 
+updateEnv(){
+    git fetch origin
+}
 
+##Merge feature into branch
+featureIntoRelease(){
+    local git_merge_feature="git merge origin/feature/$1"
+
+    $git_merge_feature
+}
+
+##Integration
 integration(){
+    #Update env
+    updateEnv
+    
     #Create new branch from master
     createbranch "release-"${DEFAULT_TIMESTAMP}
+
 }
 
 main(){
